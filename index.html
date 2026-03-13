@@ -1,0 +1,858 @@
+<style>
+.u6-wrap{font-family:Arial,sans-serif;background:#F8F5FF;color:#1A0A2E;line-height:1.7;font-size:15px;max-width:980px;margin:0 auto;}
+.u6-hero{background:linear-gradient(135deg,#5B2D8E 0%,#3D1A6E 60%,#1A0A3D 100%);color:#fff;padding:40px 28px 32px;border-radius:12px;margin-bottom:8px;}
+.u6-hero h1{font-size:26px;font-weight:900;margin:0 0 10px;color:#fff;}
+.u6-hero h1 span{color:#D4AAFF;}
+.u6-hero p{font-size:13px;color:rgba(255,255,255,.82);margin:0 0 18px;}
+.u6-badge{display:inline-block;background:rgba(212,170,255,.2);border:1px solid rgba(212,170,255,.45);color:#D4AAFF;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:30px;margin-bottom:14px;}
+.u6-meta{display:flex;flex-wrap:wrap;gap:16px;}
+.u6-meta span{font-size:12px;color:rgba(255,255,255,.82);}
+.u6-progress-wrap{background:#3D1A6E;padding:8px 28px 16px;border-radius:0 0 8px 8px;margin-bottom:24px;}
+.u6-progress-label{font-size:10px;color:rgba(255,255,255,.6);font-weight:700;letter-spacing:.08em;margin-bottom:5px;}
+.u6-progress-bar{background:rgba(255,255,255,.2);border-radius:6px;height:7px;overflow:hidden;}
+.u6-progress-fill{height:100%;background:#D4AAFF;border-radius:6px;transition:width 1s ease;}
+.u6-tabs{display:flex;flex-wrap:wrap;gap:4px;background:#fff;border:1px solid #E0D0FF;border-radius:10px;padding:8px;margin-bottom:20px;box-shadow:0 2px 8px rgba(91,45,142,.08);}
+.u6-tab{padding:9px 14px;font-size:12px;font-weight:700;color:#5B2D8E;cursor:pointer;border-radius:7px;border:none;background:none;transition:all .2s;white-space:nowrap;}
+.u6-tab:hover{background:#F0E8FF;color:#3D1A6E;}
+.u6-tab.active{background:#5B2D8E;color:#fff;}
+.u6-section{display:none;}
+.u6-section.active{display:block;}
+.u6-sec-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;}
+.u6-sec-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.u6-sec-header h2{font-size:20px;font-weight:900;color:#5B2D8E;margin:0 0 4px;}
+.u6-sec-header p{font-size:12px;color:#7A5A9E;margin:0;}
+.u6-card{background:#fff;border:1px solid #E0D0FF;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 12px rgba(91,45,142,.07);}
+.u6-card-title{font-size:14px;font-weight:700;color:#5B2D8E;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.u6-card p,.u6-card ul{font-size:13.5px;color:#2A1A3E;line-height:1.75;margin:0;}
+.u6-card ul{padding-left:18px;}
+.u6-card li{margin-bottom:5px;}
+.u6-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.u6-grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.u6-alert{border-radius:10px;padding:16px 18px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start;font-size:13px;}
+.u6-alert-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.u6-alert.purple{background:#F0E8FF;border:1px solid #C8A8FF;color:#3D1A6E;}
+.u6-alert.blue{background:#EBF2FF;border:1px solid #B8D0F7;color:#1A3A6C;}
+.u6-alert.red{background:#FFEBEB;border:1px solid #F7B8B8;color:#7A1A1A;}
+.u6-alert.yellow{background:#FFFBEB;border:1px solid #F7E6B8;color:#6C4A1A;}
+.u6-alert.green{background:#EDFAF3;border:1px solid #B8F0D3;color:#1A5C3A;}
+.u6-alert strong{font-weight:700;display:block;margin-bottom:3px;}
+.u6-highlight{background:linear-gradient(135deg,#5B2D8E,#3D1A6E);color:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;}
+.u6-highlight h3{font-size:15px;font-weight:700;color:#D4AAFF;margin:0 0 7px;}
+.u6-highlight p{font-size:13px;color:rgba(255,255,255,.87);margin:0;line-height:1.7;}
+.u6-table-wrap{overflow-x:auto;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.07);margin-bottom:20px;}
+.u6-table-wrap table{width:100%;border-collapse:collapse;background:#fff;}
+.u6-table-wrap thead tr{background:#5B2D8E;}
+.u6-table-wrap thead th{padding:11px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
+.u6-table-wrap tbody tr{border-bottom:1px solid #E0D0FF;}
+.u6-table-wrap tbody tr:hover{background:#F8F5FF;}
+.u6-table-wrap tbody td{padding:11px 14px;font-size:13px;color:#2A1A3E;}
+.u6-pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;}
+.u6-pill.purple{background:#F0E8FF;color:#5B2D8E;}
+.u6-pill.red{background:#FFEBEB;color:#A00;}
+.u6-pill.green{background:#EDFAF3;color:#1A5C3A;}
+.u6-pill.yellow{background:#FFFBEB;color:#7A5A00;}
+.u6-acc-item{background:#fff;border:1px solid #E0D0FF;border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.u6-acc-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;font-size:13.5px;font-weight:700;color:#5B2D8E;user-select:none;}
+.u6-acc-header:hover{background:#F8F5FF;}
+.u6-acc-arrow{font-size:16px;transition:transform .25s;flex-shrink:0;}
+.u6-acc-body{display:none;padding:0 18px 16px;font-size:13px;color:#2A1A3E;line-height:1.75;}
+.u6-acc-body ul{padding-left:18px;}
+.u6-acc-body li{margin-bottom:5px;}
+.u6-acc-item.open .u6-acc-arrow{transform:rotate(180deg);}
+.u6-acc-item.open .u6-acc-body{display:block;}
+.u6-ie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-bottom:20px;}
+.u6-ie-card{background:#fff;border:1px solid #E0D0FF;border-radius:10px;padding:18px;text-align:center;box-shadow:0 2px 8px rgba(91,45,142,.07);}
+.u6-ie-icon{font-size:32px;margin-bottom:8px;display:block;}
+.u6-ie-num{font-size:13px;font-weight:900;color:#5B2D8E;margin-bottom:4px;}
+.u6-ie-card h4{font-size:12px;font-weight:700;color:#3D1A6E;margin:0 0 4px;}
+.u6-ie-card p{font-size:11px;color:#7A5A9E;margin:0;line-height:1.45;}
+.u6-paso-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.u6-paso{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E0D0FF;border-radius:10px;padding:14px 16px;}
+.u6-paso-num{width:36px;height:36px;border-radius:50%;background:#5B2D8E;color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.u6-paso h4{font-size:13px;font-weight:700;color:#5B2D8E;margin:0 0 4px;}
+.u6-paso p{font-size:13px;color:#2A1A3E;margin:0;line-height:1.6;}
+.u6-emocion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px;}
+.u6-emocion-card{border-radius:10px;padding:14px;text-align:center;border:1px solid transparent;}
+.u6-emocion-icon{font-size:28px;margin-bottom:6px;display:block;}
+.u6-emocion-card h4{font-size:12px;font-weight:700;margin:0 0 4px;}
+.u6-emocion-card p{font-size:11px;margin:0;line-height:1.4;}
+.u6-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px;}
+.u6-stat-card{background:#fff;border:1px solid #E0D0FF;border-radius:10px;padding:18px;text-align:center;}
+.u6-stat-num{font-size:36px;font-weight:900;color:#5B2D8E;line-height:1;margin-bottom:4px;}
+.u6-stat-label{font-size:12px;color:#7A5A9E;line-height:1.4;}
+.u6-divider{height:1px;background:#E0D0FF;margin:22px 0;}
+.u6-h3{font-size:14px;font-weight:700;color:#5B2D8E;margin:20px 0 12px;}
+.u6-quiz-q{margin-bottom:24px;}
+.u6-quiz-q > p{font-size:14px;font-weight:700;color:#1A0A2E;margin-bottom:10px;}
+.u6-opt{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #E0D0FF;border-radius:9px;padding:11px 14px;margin-bottom:7px;cursor:pointer;font-size:13.5px;color:#2A1A3E;transition:border-color .2s,background .2s;}
+.u6-opt:hover{border-color:#5B2D8E;background:#F0E8FF;}
+.u6-opt.ok{border-color:#1A8C5B!important;background:#EDFAF3!important;color:#1A5C3A!important;pointer-events:none;}
+.u6-opt.no{border-color:#D40000!important;background:#FFEBEB!important;color:#7A1A1A!important;pointer-events:none;}
+.u6-opt-letter{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:#E0D0FF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#5B2D8E;}
+.u6-opt.ok .u6-opt-letter{background:#1A8C5B;color:#fff;}
+.u6-opt.no .u6-opt-letter{background:#D40000;color:#fff;}
+.u6-fb{margin-top:5px;font-size:12px;font-weight:700;display:none;}
+.u6-fb.show{display:block;}
+.u6-quiz-btn{background:#5B2D8E;color:#fff;border:none;border-radius:9px;padding:12px 26px;font-size:13.5px;font-weight:700;cursor:pointer;margin-top:6px;}
+.u6-quiz-btn:hover{background:#3D1A6E;}
+.u6-score{background:linear-gradient(135deg,#5B2D8E,#3D1A6E);color:#fff;border-radius:12px;padding:24px;text-align:center;display:none;margin-top:18px;}
+.u6-score-num{font-size:52px;font-weight:900;color:#D4AAFF;line-height:1;}
+.u6-score p{font-size:13px;color:rgba(255,255,255,.87);margin:8px 0 0;}
+.u6-footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:20px;border-top:1px solid #E0D0FF;}
+.u6-btn-nav{display:flex;align-items:center;gap:7px;background:#fff;border:2px solid #E0D0FF;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:700;color:#5B2D8E;cursor:pointer;}
+.u6-btn-nav:hover{background:#5B2D8E;color:#fff;border-color:#5B2D8E;}
+.u6-btn-nav.pri{background:#5B2D8E;color:#fff;border-color:#5B2D8E;}
+.u6-btn-nav.pri:hover{background:#3D1A6E;border-color:#3D1A6E;}
+</style>
+
+<div class="u6-wrap">
+
+<!-- HERO -->
+<div class="u6-hero">
+  <div class="u6-badge">🇪🇨 Curso de Instructores · Ecuador</div>
+  <h1>Unidad 6: <span>Inteligencia Emocional</span></h1>
+  <p>Aprende a conocer y manejar tus emociones, relacionarte mejor con tus alumnos y compañeros, y convertirte en un instructor equilibrado, empático y efectivo.</p>
+  <div class="u6-meta">
+    <span>🎯 Nivel Avanzado</span>
+    <span>🧠 7 Temas</span>
+    <span>⏱️ ~90 minutos</span>
+    <span>✅ Evaluación incluida</span>
+  </div>
+</div>
+<div class="u6-progress-wrap">
+  <div class="u6-progress-label">PROGRESO DE LA UNIDAD</div>
+  <div class="u6-progress-bar"><div class="u6-progress-fill" id="u6pf" style="width:12%"></div></div>
+</div>
+
+<!-- TABS -->
+<div class="u6-tabs">
+  <button class="u6-tab active" onclick="u6show(0)">🧠 1. ¿Qué es IE?</button>
+  <button class="u6-tab" onclick="u6show(1)">😤 2. Emociones al Volante</button>
+  <button class="u6-tab" onclick="u6show(2)">🌬️ 3. Estrés y Ansiedad</button>
+  <button class="u6-tab" onclick="u6show(3)">🤝 4. Empatía</button>
+  <button class="u6-tab" onclick="u6show(4)">👥 5. Relaciones Laborales</button>
+  <button class="u6-tab" onclick="u6show(5)">💬 6. Comunicación</button>
+  <button class="u6-tab" onclick="u6show(6)">🌱 7. Crecimiento Personal</button>
+  <button class="u6-tab" onclick="u6show(7)">📝 Evaluación</button>
+</div>
+
+<!-- ══════════ S1: QUÉ ES IE ══════════ -->
+<div class="u6-section active" id="u6s0">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">🧠</div>
+    <div><h2>¿Qué es la Inteligencia Emocional?</h2><p>La habilidad más importante que nadie nos enseñó en la escuela</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>💡 Definición sencilla</h3>
+    <p>La inteligencia emocional es la <strong>capacidad de reconocer, entender y manejar nuestras propias emociones</strong>, y también de comprender las emociones de las personas que nos rodean. No se trata de no sentir — se trata de saber qué hacer con lo que sentimos. Un instructor emocionalmente inteligente es más efectivo, más respetado y menos propenso al agotamiento.</p>
+  </div>
+
+  <p class="u6-h3">🔑 Las 5 Habilidades de la Inteligencia Emocional</p>
+  <div class="u6-ie-grid">
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🔍</span>
+      <div class="u6-ie-num">Habilidad 1</div>
+      <h4>Autoconocimiento</h4>
+      <p>Saber qué sientes y por qué lo sientes. Reconocer tus emociones en el momento en que aparecen.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🎛️</span>
+      <div class="u6-ie-num">Habilidad 2</div>
+      <h4>Autocontrol</h4>
+      <p>Manejar tus emociones en vez de dejar que ellas te manejen a ti. No reaccionar impulsivamente.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🎯</span>
+      <div class="u6-ie-num">Habilidad 3</div>
+      <h4>Motivación</h4>
+      <p>Encontrar energía interior para alcanzar tus metas aunque las cosas estén difíciles.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">❤️</span>
+      <div class="u6-ie-num">Habilidad 4</div>
+      <h4>Empatía</h4>
+      <p>Entender cómo se siente otra persona y ponerse en su lugar sin juzgarla.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🤝</span>
+      <div class="u6-ie-num">Habilidad 5</div>
+      <h4>Habilidades Sociales</h4>
+      <p>Relacionarse bien con los demás, resolver conflictos y trabajar en equipo con facilidad.</p>
+    </div>
+  </div>
+
+  <div class="u6-grid2">
+    <div class="u6-card">
+      <div class="u6-card-title">🆚 ¿Inteligencia emocional vs. inteligencia "normal"?</div>
+      <p>La inteligencia tradicional (IQ) mide qué tan bien razonamos con datos y lógica. La inteligencia emocional (IE) mide qué tan bien manejamos las relaciones y las emociones. Los estudios muestran que la IE predice mejor el éxito profesional y personal que el IQ solo. Un instructor puede saber mucho de mecánica y leyes, pero si no maneja bien sus emociones, no será un buen instructor.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">📈 ¿La IE se puede aprender?</div>
+      <p>¡Sí! A diferencia de la inteligencia tradicional, la inteligencia emocional <strong>puede desarrollarse a cualquier edad</strong> con práctica consciente. No es un rasgo fijo con el que nacemos — es una habilidad que se entrena como un músculo. Esta unidad te dará herramientas concretas para hacerlo.</p>
+    </div>
+  </div>
+
+  <div class="u6-alert purple">
+    <span class="u6-alert-icon">💜</span>
+    <div><strong>¿Por qué es clave para un instructor de conducción?</strong>
+    Enseñar a conducir es una de las tareas más estresantes que existen: el alumno está nervioso, el tráfico es impredecible, hay presión de tiempo y responsabilidad sobre una vida. Sin inteligencia emocional, ese estrés se convierte en mal genio, impaciencia y clases poco efectivas.</div>
+  </div>
+
+  <div class="u6-acc-item">
+    <div class="u6-acc-header" onclick="u6acc(this)"><span>🧪 ¿Cómo medir tu inteligencia emocional? — Señales cotidianas</span><span class="u6-acc-arrow">▼</span></div>
+    <div class="u6-acc-body"><ul>
+      <li>¿Te pones muy enojado/a cuando alguien te critica? → Autocontrol por desarrollar.</li>
+      <li>¿Sabes exactamente por qué te sientes mal cuando algo te molesta? → Buen autoconocimiento.</li>
+      <li>¿Puedes calmarte rápido después de un disgusto? → Buena regulación emocional.</li>
+      <li>¿Notas cuándo un alumno está nervioso sin que te lo diga? → Buena empatía.</li>
+      <li>¿Te cuesta trabajo decir "me equivoqué"? → Oportunidad de crecimiento en autoconciencia.</li>
+      <li>¿Los conflictos con compañeros se resuelven o se acumulan? → Indicador de habilidades sociales.</li>
+    </ul></div>
+  </div>
+
+  <div class="u6-footer-nav"><span></span><button class="u6-btn-nav pri" onclick="u6show(1)">Siguiente: Emociones al Volante →</button></div>
+</div>
+
+<!-- ══════════ S2: EMOCIONES AL VOLANTE ══════════ -->
+<div class="u6-section" id="u6s1">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#FFEBEB;">😤</div>
+    <div><h2>Control de Emociones al Volante</h2><p>Lo que sientes dentro del vehículo afecta lo que haces con él</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>🚗 El vehículo amplifica las emociones</h3>
+    <p>Dentro de un vehículo nos sentimos más protegidos y con más "poder". Esto hace que las emociones negativas — enojo, frustración, miedo — se expresen de forma más intensa que en otras situaciones. El instructor debe ser consciente de esto en sí mismo <strong>y en su alumno</strong>.</p>
+  </div>
+
+  <p class="u6-h3">🎭 Las Emociones más Comunes al Conducir</p>
+  <div class="u6-emocion-grid">
+    <div class="u6-emocion-card" style="background:#FFEBEB;border-color:#F7B8B8;">
+      <span class="u6-emocion-icon">😠</span>
+      <h4 style="color:#8C1A1A;">Enojo</h4>
+      <p style="color:#7A1A1A;">Aumenta la velocidad, reduce la atención, provoca decisiones impulsivas.</p>
+    </div>
+    <div class="u6-emocion-card" style="background:#FFFBEB;border-color:#F7E6B8;">
+      <span class="u6-emocion-icon">😰</span>
+      <h4 style="color:#6C4A1A;">Miedo / Ansiedad</h4>
+      <p style="color:#7A5A00;">Provoca parálisis, frenadas bruscas, indecisión en intersecciones.</p>
+    </div>
+    <div class="u6-emocion-card" style="background:#FFF3E0;border-color:#FFD0A0;">
+      <span class="u6-emocion-icon">😔</span>
+      <h4 style="color:#7A3A00;">Tristeza</h4>
+      <p style="color:#6C3A00;">Reduce la concentración, aumenta la distracción y los tiempos de reacción.</p>
+    </div>
+    <div class="u6-emocion-card" style="background:#F0E8FF;border-color:#C8A8FF;">
+      <span class="u6-emocion-icon">😤</span>
+      <h4 style="color:#3D1A6E;">Frustración</h4>
+      <p style="color:#5B2D8E;">Genera impaciencia, bocina excesiva, irrespeto a otros conductores.</p>
+    </div>
+    <div class="u6-emocion-card" style="background:#EDFAF3;border-color:#B8F0D3;">
+      <span class="u6-emocion-icon">😊</span>
+      <h4 style="color:#1A5C3A;">Calma / Alegría</h4>
+      <p style="color:#1A5C3A;">El estado ideal. Mejora el tiempo de reacción y la toma de decisiones.</p>
+    </div>
+    <div class="u6-emocion-card" style="background:#EBF2FF;border-color:#B8D0F7;">
+      <span class="u6-emocion-icon">😴</span>
+      <h4 style="color:#1A3A6C;">Aburrimiento</h4>
+      <p style="color:#1A3A6C;">En viajes largos genera desconexión, búsqueda de distracciones y microsueños.</p>
+    </div>
+  </div>
+
+  <p class="u6-h3">🛠️ Técnicas para Controlar las Emociones al Volante</p>
+  <div class="u6-paso-grid">
+    <div class="u6-paso">
+      <div class="u6-paso-num">1</div>
+      <div><h4>Respiración abdominal</h4><p>Inhala lentamente por la nariz contando hasta 4, mantén el aire 2 segundos, exhala por la boca contando hasta 6. Repite 3 veces. Activa el sistema nervioso parasimpático y reduce el enojo en segundos.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">2</div>
+      <div><h4>La pausa de 10 segundos</h4><p>Antes de reaccionar ante algo que te molesta en el tráfico (un "cerrón", una bocina), cuenta hasta 10 en silencio. La mayoría de las veces el impulso de reaccionar habrá pasado.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">3</div>
+      <div><h4>Cambiar el enfoque</h4><p>En lugar de pensar "ese conductor es un irresponsable", piensa "quizás tiene una emergencia". Este cambio de perspectiva reduce el enojo y te mantiene en control.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">4</div>
+      <div><h4>Salir del vehículo si es necesario</h4><p>Si sientes que las emociones están desbordadas, es mejor detenerse en un lugar seguro, salir del vehículo 5 minutos y volver a conducir cuando estés calmado/a.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">5</div>
+      <div><h4>Preparación emocional previa</h4><p>Salir con tiempo suficiente, escuchar música que te relaje, revisar que el vehículo esté en orden. La conducción segura empieza antes de encender el motor.</p></div>
+    </div>
+  </div>
+
+  <div class="u6-alert yellow">
+    <span class="u6-alert-icon">⚠️</span>
+    <div><strong>El instructor también se estresa — y el alumno lo nota</strong>
+    Si el instructor da instrucciones con voz tensa, se agarra del tablero o suspira con impaciencia, el alumno se pone más nervioso y comete más errores. La calma del instructor es literalmente una herramienta pedagógica.</div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(0)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(2)">Siguiente: Estrés y Ansiedad →</button></div>
+</div>
+
+<!-- ══════════ S3: ESTRÉS Y ANSIEDAD ══════════ -->
+<div class="u6-section" id="u6s2">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">🌬️</div>
+    <div><h2>Manejo del Estrés y la Ansiedad</h2><p>Herramientas prácticas para un trabajo de alta exigencia</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>🌬️ ¿Qué es el estrés y cuándo se vuelve un problema?</h3>
+    <p>El estrés es una respuesta natural del cuerpo ante situaciones de presión. En pequeñas dosis nos ayuda a rendir mejor. El problema es cuando se vuelve <strong>crónico</strong> — cuando estamos estresados casi siempre, sin tiempo para recuperarnos. Para un instructor de conducción, que trabaja en un entorno de alta responsabilidad y muchas horas, el estrés crónico es un riesgo real.</p>
+  </div>
+
+  <p class="u6-h3">🚨 Señales de que el Estrés está Afectando tu Trabajo</p>
+  <div class="u6-grid3">
+    <div class="u6-card" style="border-top:4px solid #5B2D8E;">
+      <div class="u6-card-title">🧠 Señales Mentales</div>
+      <ul>
+        <li>Dificultad para concentrarte</li>
+        <li>Olvidar cosas con frecuencia</li>
+        <li>Pensamientos negativos constantes</li>
+        <li>Sensación de que "no puedes más"</li>
+      </ul>
+    </div>
+    <div class="u6-card" style="border-top:4px solid #8B2D9E;">
+      <div class="u6-card-title">😤 Señales Emocionales</div>
+      <ul>
+        <li>Irritabilidad sin razón aparente</li>
+        <li>Sensación de angustia</li>
+        <li>Pérdida de motivación por el trabajo</li>
+        <li>Ganas de evitar a los alumnos</li>
+      </ul>
+    </div>
+    <div class="u6-card" style="border-top:4px solid #D4AAFF;">
+      <div class="u6-card-title">🏥 Señales Físicas</div>
+      <ul>
+        <li>Dolores de cabeza frecuentes</li>
+        <li>Tensión en cuello y hombros</li>
+        <li>Problemas para dormir</li>
+        <li>Cansancio que no mejora con el descanso</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="u6-h3">🛠️ Técnicas Probadas para Manejar el Estrés</p>
+  <div class="u6-grid2">
+    <div class="u6-card">
+      <div class="u6-card-title">🌬️ Respiración 4-7-8</div>
+      <p>Inhala 4 segundos → aguanta 7 segundos → exhala 8 segundos. Esta técnica activa el sistema de relajación del cuerpo casi de inmediato. Úsala antes de una clase difícil o después de un momento tenso en la vía.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">🏃 Ejercicio Físico Regular</div>
+      <p>30 minutos de caminata, trote o cualquier actividad que disfrutes, al menos 3 veces por semana. El ejercicio es el antiestrés más efectivo que existe — libera endorfinas que mejoran el ánimo de forma natural.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">📝 Escribir lo que Sientes</div>
+      <p>Llevar un diario breve — 5 minutos al final del día — donde anotes qué salió bien y qué te generó estrés. Esto ayuda a identificar patrones y a procesar las emociones antes de que se acumulen.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">⏱️ Gestión del Tiempo</div>
+      <p>Organizar el horario de clases con descansos entre alumnos. No programar más clases de las que puedes dar bien. Aprender a decir "no" cuando la carga es excesiva. El descanso no es flojera — es parte del trabajo.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">🧘 Mindfulness (Atención Plena)</div>
+      <p>Prestar atención al momento presente sin juzgar. Puede ser tan simple como concentrarse en la respiración durante 5 minutos. Aplicaciones gratuitas como Calm o Headspace tienen guías en español para principiantes.</p>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">💬 Hablar con Alguien de Confianza</div>
+      <p>Compartir lo que sientes con un amigo, familiar o colega de confianza alivia la carga emocional. Si el estrés es muy intenso o persistente, buscar apoyo psicológico profesional es un acto de responsabilidad, no de debilidad.</p>
+    </div>
+  </div>
+
+  <div class="u6-acc-item">
+    <div class="u6-acc-header" onclick="u6acc(this)"><span>😰 Ansiedad ante los Alumnos Difíciles — Cómo Manejarla</span><span class="u6-acc-arrow">▼</span></div>
+    <div class="u6-acc-body">
+      <ul>
+        <li><strong>Alumno muy nervioso:</strong> Bajar el tono de voz, hablar más despacio, dar instrucciones simples de una en una. Su nerviosismo no es personal — es normal al aprender.</li>
+        <li><strong>Alumno que no avanza:</strong> Recordar que cada persona aprende a su ritmo. Frustrarse con el alumno solo empeora la situación. Revisar el método de enseñanza, no culpar al alumno.</li>
+        <li><strong>Alumno agresivo o irrespetuoso:</strong> Mantener la calma. Poner límites claros y con respeto. Si la situación no mejora, es válido suspender la clase.</li>
+        <li><strong>Situación de riesgo en la vía:</strong> El instructor debe tener un "protocolo mental" preparado para actuar sin dudar. Ensayarlo mentalmente antes de cada clase reduce la ansiedad situacional.</li>
+      </ul>
+
+      <p style="font-size:13.5px;font-weight:700;color:#5B2D8E;margin:18px 0 8px;">💔 Alumno en crisis emocional (muerte de un familiar u otra situación grave)</p>
+      <p style="font-size:13px;color:#2A1A3E;margin:0 0 12px;">A veces un alumno llega a clase atravesando algo muy doloroso: la muerte de un familiar, una separación, una enfermedad grave en la familia u otro evento traumático. Esta es una de las situaciones más delicadas que puede enfrentar un instructor.</p>
+
+      <div style="background:#F0E8FF;border-radius:8px;padding:14px 16px;margin-bottom:14px;border-left:4px solid #5B2D8E;">
+        <p style="font-size:13px;font-weight:700;color:#3D1A6E;margin:0 0 6px;">🔑 Regla fundamental: la clase puede esperar, la persona no.</p>
+        <p style="font-size:13px;color:#2A1A3E;margin:0;">Nunca des una clase de manejo a un alumno que está en crisis emocional activa. Conducir requiere atención plena — una persona que está llorando, en estado de shock o muy perturbada no está en condiciones seguras de manejar.</p>
+      </div>
+
+      <p style="font-size:13px;font-weight:700;color:#5B2D8E;margin:12px 0 8px;">✅ Pasos que debe seguir el instructor:</p>
+      <ul>
+        <li><strong>1. Detener la clase antes de comenzar:</strong> Si al llegar notas que el alumno está muy perturbado, llorando o en estado de shock, no inicies la práctica. La seguridad vial empieza antes de encender el motor.</li>
+        <li><strong>2. Crear un espacio seguro y privado:</strong> Invita al alumno a sentarse en un lugar tranquilo, lejos del vehículo y del ruido. Un tono de voz calmado y una actitud sin apuro le transmiten que puede tomarse el tiempo que necesita.</li>
+        <li><strong>3. Escuchar sin juzgar:</strong> No ofrezcas soluciones de inmediato ni intentes "arreglar" lo que siente. Frases como "entiendo que estás pasando por algo muy duro" o "lamento mucho lo que estás viviendo" son más útiles que cualquier consejo.</li>
+        <li><strong>4. No minimizar el dolor:</strong> Evita frases como "ya va a pasar", "tienes que ser fuerte" o "hay que seguir adelante". Aunque se digan con buena intención, pueden hacer que el alumno sienta que su dolor no es válido.</li>
+        <li><strong>5. Preguntar cómo se siente y qué necesita:</strong> Algunas personas necesitan hablar; otras necesitan silencio y compañía. Pregunta con respeto: "¿Quieres contarme qué pasó?" o "¿Prefieres que te acompañe en silencio un momento?"</li>
+        <li><strong>6. Reprogramar la clase sin presión:</strong> Di algo como: "No hay ningún apuro — cuando estés listo/a, retomamos. Lo más importante ahora eres tú." Reprogramar la clase es un acto de empatía y también de responsabilidad.</li>
+        <li><strong>7. Orientar hacia apoyo profesional si es necesario:</strong> Si el alumno muestra señales de crisis intensa — llanto incontrolable, dificultad para respirar, expresiones de desesperanza — oriéntalo con amabilidad hacia un psicólogo, el médico de cabecera o una línea de apoyo emocional.</li>
+        <li><strong>8. Informar a la institución:</strong> Comunica lo ocurrido al coordinador o director. No para "reportar" al alumno, sino para que la institución pueda ofrecer apoyo adicional y registrar el motivo del cambio de horario.</li>
+      </ul>
+
+      <div style="background:#EDFAF3;border-radius:8px;padding:14px 16px;margin-top:14px;border-left:4px solid #1A8C5B;">
+        <p style="font-size:13px;font-weight:700;color:#1A5C3A;margin:0 0 6px;">💚 Cuídate tú también</p>
+        <p style="font-size:13px;color:#2A1A3E;margin:0;">Acompañar a alguien en dolor también afecta emocionalmente al instructor. Si después de una situación así sientes pesadez o angustia, es normal. Habla con alguien de confianza o tómate unos minutos para respirar antes de continuar con el siguiente alumno.</p>
+      </div>
+
+      <div style="background:#FFF3E0;border-radius:8px;padding:14px 16px;margin-top:12px;border-left:4px solid #C45000;">
+        <p style="font-size:13px;font-weight:700;color:#7A3A00;margin:0 0 4px;">📞 Líneas de apoyo en Ecuador</p>
+        <p style="font-size:13px;color:#3A1A00;margin:0;"><strong>MSP — Salud Mental:</strong> 171 opción 6 &nbsp;|&nbsp; <strong>ECU-911:</strong> 911 &nbsp;|&nbsp; <strong>DINAPEN (menores):</strong> 1800-277-637</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(1)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(3)">Siguiente: Empatía →</button></div>
+</div>
+
+<!-- ══════════ S4: EMPATÍA ══════════ -->
+<div class="u6-section" id="u6s3">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">🤝</div>
+    <div><h2>Empatía y Relaciones con el Alumno</h2><p>Enseñar bien empieza por entender al otro</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>❤️ ¿Qué es la empatía en la enseñanza?</h3>
+    <p>La empatía es la capacidad de ponerse en el lugar del alumno: recordar cómo se siente alguien que está aprendiendo algo nuevo, que tiene miedo de equivocarse, que siente presión. Un instructor empático <strong>no olvida cómo era ser principiante</strong>. Eso cambia completamente la forma en que enseña.</p>
+  </div>
+
+  <div class="u6-grid2">
+    <div class="u6-card">
+      <div class="u6-card-title">✅ Instructor con Alta Empatía</div>
+      <ul>
+        <li>Explica las cosas de diferentes formas hasta que el alumno entienda.</li>
+        <li>No se burla de los errores — los usa como oportunidad de aprendizaje.</li>
+        <li>Nota cuando el alumno está agotado o bloqueado y ajusta la clase.</li>
+        <li>Celebra los avances pequeños, no solo los logros grandes.</li>
+        <li>Recuerda el nombre del alumno y detalles de sus clases anteriores.</li>
+        <li>Pregunta cómo se siente antes de comenzar la práctica.</li>
+      </ul>
+    </div>
+    <div class="u6-card">
+      <div class="u6-card-title">❌ Instructor con Poca Empatía</div>
+      <ul>
+        <li>Repite la misma explicación más fuerte cuando el alumno no entiende.</li>
+        <li>Se impacienta cuando el alumno comete el mismo error varias veces.</li>
+        <li>Compara al alumno con otros: "los demás ya aprendieron esto".</li>
+        <li>No ajusta su ritmo ni su lenguaje al nivel del alumno.</li>
+        <li>Ignora las señales de nerviosismo o bloqueo emocional.</li>
+        <li>Su objetivo es terminar la clase, no que el alumno aprenda.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="u6-h3">🗣️ Cómo Dar Retroalimentación de Forma Empática</p>
+  <div class="u6-paso-grid">
+    <div class="u6-paso">
+      <div class="u6-paso-num">1</div>
+      <div><h4>Empieza por lo positivo</h4><p>Antes de señalar un error, reconoce algo que el alumno hizo bien en esa misma maniobra. Esto baja las defensas y hace que el alumno esté más abierto a escuchar la corrección.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">2</div>
+      <div><h4>Describe el error, no a la persona</h4><p>Di "el volante quedó un poco desviado hacia la izquierda" en lugar de "eres descuidado con el volante". El primero corrige una acción; el segundo ataca la identidad del alumno.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">3</div>
+      <div><h4>Da una instrucción clara de cómo mejorar</h4><p>No basta con decir qué estuvo mal — el alumno necesita saber exactamente qué hacer diferente. "La próxima vez, mantén los ojos en el espejo lateral dos segundos antes de cambiar de carril."</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">4</div>
+      <div><h4>Verifica que el alumno entendió</h4><p>Pregunta: "¿Quedó claro lo que ajustaremos?" o "¿Tienes alguna pregunta sobre eso?" No des por hecho que el silencio significa que entendió.</p></div>
+    </div>
+  </div>
+
+  <div class="u6-alert green">
+    <span class="u6-alert-icon">🌱</span>
+    <div><strong>El aprendizaje ocurre en un ambiente seguro</strong>
+    Los alumnos aprenden mejor cuando no tienen miedo de equivocarse. Crear un ambiente donde el error es parte natural del aprendizaje — y no motivo de vergüenza — es la habilidad pedagógica más poderosa que tiene un instructor.</div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(2)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(4)">Siguiente: Relaciones Laborales →</button></div>
+</div>
+
+<!-- ══════════ S5: RELACIONES LABORALES ══════════ -->
+<div class="u6-section" id="u6s4">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">👥</div>
+    <div><h2>Buenas Relaciones Laborales entre Compañeros</h2><p>El ambiente de trabajo también necesita inteligencia emocional</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>👥 ¿Por qué importan las relaciones entre colegas?</h3>
+    <p>Un equipo de instructores que se lleva bien, se apoya y se comunica con respeto trabaja mejor, se estresa menos y da clases de mayor calidad. Por el contrario, un ambiente laboral tóxico afecta el rendimiento, la salud y la relación con los alumnos. La inteligencia emocional se aplica también al equipo de trabajo.</p>
+  </div>
+
+  <p class="u6-h3">🌟 Características de un Buen Compañero de Trabajo</p>
+  <div class="u6-grid3">
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">🙌</div>
+      <div class="u6-card-title" style="justify-content:center;">Reconoce el mérito ajeno</div>
+      <p>Felicita a un colega cuando lo hace bien. No compite por el mérito — suma al equipo.</p>
+    </div>
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">🤐</div>
+      <div class="u6-card-title" style="justify-content:center;">No alimenta el chisme</div>
+      <p>Si hay un problema con un colega, habla con esa persona — no con todos los demás.</p>
+    </div>
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">🆘</div>
+      <div class="u6-card-title" style="justify-content:center;">Ofrece y pide ayuda</div>
+      <p>Compartir experiencias y dificultades fortalece al equipo. Nadie lo sabe todo.</p>
+    </div>
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">⏰</div>
+      <div class="u6-card-title" style="justify-content:center;">Es puntual y confiable</div>
+      <p>Cumplir los horarios y compromisos es una forma de respetar a los compañeros.</p>
+    </div>
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">🗣️</div>
+      <div class="u6-card-title" style="justify-content:center;">Se expresa con respeto</div>
+      <p>Dar opiniones sin atacar. Escuchar sin interrumpir. Discrepar sin faltar el respeto.</p>
+    </div>
+    <div class="u6-card" style="text-align:center;padding:18px 14px;">
+      <div style="font-size:28px;margin-bottom:8px;">🔄</div>
+      <div class="u6-card-title" style="justify-content:center;">Se adapta al cambio</div>
+      <p>Acepta nuevos procedimientos o compañeros sin resistencia pasiva ni queja constante.</p>
+    </div>
+  </div>
+
+  <p class="u6-h3">⚡ Resolución de Conflictos entre Compañeros</p>
+  <div class="u6-table-wrap"><table>
+    <thead><tr><th>Situación</th><th>Respuesta poco inteligente</th><th>Respuesta emocionalmente inteligente</th></tr></thead>
+    <tbody>
+      <tr><td>Un colega critica tu forma de enseñar</td><td>Reaccionar a la defensiva o devolver la crítica</td><td>Escuchar, agradecer la observación y evaluar si es válida</td></tr>
+      <tr><td>Un compañero llega tarde y te afecta</td><td>Quejarse con todos excepto con él</td><td>Hablar directamente con la persona de forma respetuosa</td></tr>
+      <tr><td>Te sientes ignorado en las decisiones del equipo</td><td>Desconectarse o trabajar en contra</td><td>Expresar cómo te sientes y proponer cómo mejorar la situación</td></tr>
+      <tr><td>Un colega hace algo que te parece injusto</td><td>Guardar resentimiento o estallar de golpe</td><td>Elegir el momento y lugar adecuados para conversarlo con calma</td></tr>
+      <tr><td>Diferencia de opinión sobre un método de enseñanza</td><td>Imponer la propia opinión o ignorar la del otro</td><td>Escuchar ambas perspectivas y buscar lo mejor para el alumno</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="u6-acc-item">
+    <div class="u6-acc-header" onclick="u6acc(this)"><span>🔴 Comportamientos que dañan el ambiente laboral</span><span class="u6-acc-arrow">▼</span></div>
+    <div class="u6-acc-body"><ul>
+      <li><strong>Chisme y rumores:</strong> Destruyen la confianza y crean bandos dentro del equipo.</li>
+      <li><strong>Competencia desleal:</strong> Buscar destacar haciendo quedar mal a los demás.</li>
+      <li><strong>Comunicación pasivo-agresiva:</strong> Decir "todo está bien" cuando no lo está, y luego actuar con resentimiento.</li>
+      <li><strong>No cumplir los acuerdos:</strong> Genera desconfianza y obliga a los demás a compensar el trabajo no hecho.</li>
+      <li><strong>Menospreciar la experiencia o la edad:</strong> Tanto "eres muy joven para saber" como "eres muy viejo para cambiar" son actitudes que bloquean el crecimiento del equipo.</li>
+    </ul></div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(3)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(5)">Siguiente: Comunicación →</button></div>
+</div>
+
+<!-- ══════════ S6: COMUNICACIÓN ══════════ -->
+<div class="u6-section" id="u6s5">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">💬</div>
+    <div><h2>Comunicación Efectiva para Instructores</h2><p>No basta con saber — hay que saber explicar</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>💬 La comunicación va más allá de las palabras</h3>
+    <p>Los estudios muestran que solo el <strong>7% de la comunicación son las palabras</strong>. El 38% es el tono de voz y el 55% es el lenguaje corporal — postura, gestos, expresión facial. Un instructor puede decir las palabras correctas pero transmitir impaciencia, enojo o desdén con el cuerpo y el tono. El alumno capta todo eso.</p>
+  </div>
+
+  <p class="u6-h3">🗣️ Tipos de Comunicación</p>
+  <div class="u6-grid3">
+    <div class="u6-card" style="border-top:4px solid #D40000;">
+      <div class="u6-card-title">😤 Comunicación Agresiva</div>
+      <ul>
+        <li>Voz alta o intimidante</li>
+        <li>Interrumpe al otro</li>
+        <li>Culpa y critica a la persona</li>
+        <li>No escucha — solo habla</li>
+        <li><strong>Resultado:</strong> Miedo, resistencia, resentimiento</li>
+      </ul>
+    </div>
+    <div class="u6-card" style="border-top:4px solid #6B7A99;">
+      <div class="u6-card-title">😶 Comunicación Pasiva</div>
+      <ul>
+        <li>No dice lo que piensa o siente</li>
+        <li>Acepta todo aunque no esté de acuerdo</li>
+        <li>Evita el conflicto a cualquier costo</li>
+        <li>Acumula resentimiento</li>
+        <li><strong>Resultado:</strong> Malentendidos, frustración interna</li>
+      </ul>
+    </div>
+    <div class="u6-card" style="border-top:4px solid #1A5C3A;">
+      <div class="u6-card-title">😊 Comunicación Asertiva ✅</div>
+      <ul>
+        <li>Expresa lo que piensa con respeto</li>
+        <li>Escucha activamente al otro</li>
+        <li>Dice "no" cuando es necesario</li>
+        <li>Busca soluciones, no culpables</li>
+        <li><strong>Resultado:</strong> Confianza, respeto mutuo, acuerdos reales</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="u6-h3">👂 Escucha Activa — La habilidad más subestimada</p>
+  <div class="u6-paso-grid">
+    <div class="u6-paso">
+      <div class="u6-paso-num">1</div>
+      <div><h4>Deja de hablar y escucha de verdad</h4><p>No planifiques tu respuesta mientras el otro habla. Concéntrate en lo que dice. La mayoría de las personas "escuchan para responder", no para entender.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">2</div>
+      <div><h4>Muestra que estás escuchando</h4><p>Asiente con la cabeza, mantén contacto visual, di "entiendo" o "claro". Esto le dice al otro que su mensaje está llegando.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">3</div>
+      <div><h4>Haz preguntas para entender mejor</h4><p>"¿Puedes explicarme más eso?" o "¿Qué quisiste decir con...?" muestran interés genuino y evitan malentendidos.</p></div>
+    </div>
+    <div class="u6-paso">
+      <div class="u6-paso-num">4</div>
+      <div><h4>Resume lo que escuchaste</h4><p>"Si entendí bien, lo que dices es..." Esto confirma que comprendiste el mensaje y da al otro la oportunidad de corregir si no fue así.</p></div>
+    </div>
+  </div>
+
+  <div class="u6-alert purple">
+    <span class="u6-alert-icon">💡</span>
+    <div><strong>Frases que un instructor debe evitar con sus alumnos</strong>
+    "¡Cuántas veces te lo tengo que decir!", "¡Eso es lo más básico!", "Los demás alumnos ya lo aprendieron", "¿Es que no prestas atención?", "Yo a tu edad ya sabía hacer esto". Estas frases desmotivan, generan vergüenza y bloquean el aprendizaje.</div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(4)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(6)">Siguiente: Crecimiento Personal →</button></div>
+</div>
+
+<!-- ══════════ S7: CRECIMIENTO PERSONAL ══════════ -->
+<div class="u6-section" id="u6s6">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#EDFAF3;">🌱</div>
+    <div><h2>Crecimiento Personal del Instructor</h2><p>El mejor instructor sigue aprendiendo siempre</p></div>
+  </div>
+
+  <div class="u6-highlight">
+    <h3>🌱 ¿Por qué el crecimiento personal importa en este trabajo?</h3>
+    <p>Un instructor que no crece como persona termina dando clases en "piloto automático" — sin energía, sin conexión con sus alumnos y sin capacidad de adaptarse a nuevos retos. El crecimiento personal no es un lujo — es parte de ser un buen profesional. Y empieza con una pregunta sencilla: <strong>¿Quiero ser hoy mejor instructor que ayer?</strong></p>
+  </div>
+
+  <p class="u6-h3">🔄 Mentalidad Fija vs. Mentalidad de Crecimiento</p>
+  <div class="u6-table-wrap"><table>
+    <thead><tr><th>Situación</th><th>Mentalidad Fija ❌</th><th>Mentalidad de Crecimiento ✅</th></tr></thead>
+    <tbody>
+      <tr><td>Un alumno no aprende con tu método</td><td>"Este alumno no sirve para manejar"</td><td>"Necesito probar un método diferente con este alumno"</td></tr>
+      <tr><td>Un colega te señala un error</td><td>"Me están atacando"</td><td>"Esta crítica me ayuda a mejorar"</td></tr>
+      <tr><td>Te piden aprender algo nuevo</td><td>"Ya sé suficiente, no necesito más"</td><td>"Esta es una oportunidad de mejorar mis habilidades"</td></tr>
+      <tr><td>Cometes un error en clase</td><td>"Soy un mal instructor"</td><td>"Me equivoqué en esto, ¿qué puedo hacer diferente?"</td></tr>
+      <tr><td>Un alumno te supera en algo</td><td>Incomodidad o envidia</td><td>Orgullo y satisfacción por haberle enseñado bien</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="u6-h3">🎯 Hábitos de los Instructores con Alta Inteligencia Emocional</p>
+  <div class="u6-ie-grid">
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🪞</span>
+      <h4>Autoevaluación Regular</h4>
+      <p>Al final de cada semana, preguntan: ¿qué hice bien? ¿qué haría diferente? ¿cómo estuvo mi paciencia?</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">📚</span>
+      <h4>Formación Continua</h4>
+      <p>Buscan actualizarse en técnicas de enseñanza, normativas de tránsito y habilidades blandas.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🧘</span>
+      <h4>Cuidado Personal</h4>
+      <p>Duermen bien, hacen ejercicio, tienen actividades que los recargan fuera del trabajo.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🙏</span>
+      <h4>Gratitud</h4>
+      <p>Reconocen lo bueno de su trabajo: el progreso de un alumno, un día sin incidentes, un compañero que les ayudó.</p>
+    </div>
+    <div class="u6-ie-card">
+      <span class="u6-ie-icon">🔁</span>
+      <h4>Piden Retroalimentación</h4>
+      <p>Preguntan a sus alumnos cómo mejorar la clase. No por inseguridad — por compromiso con la calidad.</p>
+    </div>
+  </div>
+
+  <div class="u6-acc-item">
+    <div class="u6-acc-header" onclick="u6acc(this)"><span>🛡️ Prevención del Síndrome de Burnout (Agotamiento Profesional)</span><span class="u6-acc-arrow">▼</span></div>
+    <div class="u6-acc-body">
+      <p style="margin-bottom:8px;"><strong>¿Qué es el burnout?</strong> Es un estado de agotamiento extremo — físico, emocional y mental — causado por un estrés laboral prolongado sin suficiente recuperación.</p>
+      <p style="margin:10px 0 8px;"><strong>Señales de alerta:</strong></p>
+      <ul>
+        <li>Sentir que el trabajo ya no tiene sentido.</li>
+        <li>Tratar a los alumnos de forma fría o despersonalizada.</li>
+        <li>Faltar al trabajo con frecuencia o llegar sin energía.</li>
+        <li>Sensación de que "nada de lo que hago importa".</li>
+      </ul>
+      <p style="margin:10px 0 8px;"><strong>Prevención:</strong></p>
+      <ul>
+        <li>Establecer límites claros entre el trabajo y la vida personal.</li>
+        <li>Tomar vacaciones o días de descanso cuando se tienen disponibles.</li>
+        <li>Hablar con un profesional de salud mental si las señales persisten.</li>
+        <li>Recordar regularmente el propósito del trabajo: formar conductores seguros que salvan vidas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="u6-alert green">
+    <span class="u6-alert-icon">🌟</span>
+    <div><strong>Recuerda siempre</strong>
+    Cada conductor que formas bien es una persona que podría salvar su vida o la de alguien más gracias a lo que aprendió contigo. Eso es un impacto real, concreto y valioso. Eres parte de algo más grande que una clase de manejo.</div>
+  </div>
+
+  <div class="u6-footer-nav"><button class="u6-btn-nav" onclick="u6show(5)">← Anterior</button><button class="u6-btn-nav pri" onclick="u6show(7)">Ir a la Evaluación ✓</button></div>
+</div>
+
+<!-- ══════════ S8: EVALUACIÓN ══════════ -->
+<div class="u6-section" id="u6s7">
+  <div class="u6-sec-header">
+    <div class="u6-sec-icon" style="background:#F0E8FF;">📝</div>
+    <div><h2>Evaluación de la Unidad 6</h2><p>10 preguntas — Selecciona la respuesta correcta</p></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q1">
+    <p>1. ¿Cuántas habilidades principales tiene la inteligencia emocional según el modelo de Goleman?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q1',false)"><span class="u6-opt-letter">A</span>3 habilidades</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q1',false)"><span class="u6-opt-letter">B</span>4 habilidades</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q1',true)"><span class="u6-opt-letter">C</span>5 habilidades</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q1',false)"><span class="u6-opt-letter">D</span>7 habilidades</div>
+    <div class="u6-fb" id="u6fb-u6q1"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q2">
+    <p>2. ¿Cuál de estas técnicas activa el sistema de relajación del cuerpo casi de inmediato?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q2',false)"><span class="u6-opt-letter">A</span>Escuchar música a alto volumen</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q2',true)"><span class="u6-opt-letter">B</span>La respiración abdominal controlada</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q2',false)"><span class="u6-opt-letter">C</span>Tomar una bebida fría</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q2',false)"><span class="u6-opt-letter">D</span>Acelerar el vehículo para desestresarse</div>
+    <div class="u6-fb" id="u6fb-u6q2"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q3">
+    <p>3. Un alumno comete el mismo error varias veces. ¿Cuál es la respuesta más emocionalmente inteligente del instructor?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q3',false)"><span class="u6-opt-letter">A</span>Decirle que los otros alumnos ya aprendieron eso</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q3',false)"><span class="u6-opt-letter">B</span>Repetir la misma explicación más fuerte</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q3',true)"><span class="u6-opt-letter">C</span>Probar un método diferente de enseñanza adaptado al alumno</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q3',false)"><span class="u6-opt-letter">D</span>Terminar la clase y reportar al alumno</div>
+    <div class="u6-fb" id="u6fb-u6q3"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q4">
+    <p>4. ¿Qué porcentaje de la comunicación corresponde al lenguaje corporal (gestos, postura, expresión facial)?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q4',false)"><span class="u6-opt-letter">A</span>7%</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q4',false)"><span class="u6-opt-letter">B</span>38%</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q4',true)"><span class="u6-opt-letter">C</span>55%</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q4',false)"><span class="u6-opt-letter">D</span>70%</div>
+    <div class="u6-fb" id="u6fb-u6q4"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q5">
+    <p>5. ¿Cuál de estos es un ejemplo de comunicación ASERTIVA?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q5',false)"><span class="u6-opt-letter">A</span>Decir "todo está bien" cuando no lo está para evitar conflictos</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q5',false)"><span class="u6-opt-letter">B</span>Alzar la voz para que el otro entienda la importancia del tema</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q5',true)"><span class="u6-opt-letter">C</span>Expresar lo que piensas con respeto, escuchando también al otro</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q5',false)"><span class="u6-opt-letter">D</span>Interrumpir al otro cuando está equivocado para corregirlo</div>
+    <div class="u6-fb" id="u6fb-u6q5"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q6">
+    <p>6. ¿Qué es el "burnout" o síndrome de agotamiento profesional?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q6',false)"><span class="u6-opt-letter">A</span>Cansancio normal al final de la jornada laboral</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q6',true)"><span class="u6-opt-letter">B</span>Agotamiento extremo físico, emocional y mental por estrés laboral prolongado</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q6',false)"><span class="u6-opt-letter">C</span>Un tipo de enfermedad física causada por el trabajo al aire libre</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q6',false)"><span class="u6-opt-letter">D</span>La motivación extra que se siente al inicio de un nuevo trabajo</div>
+    <div class="u6-fb" id="u6fb-u6q6"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q7">
+    <p>7. ¿Cuál es la forma correcta de dar retroalimentación empática a un alumno?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q7',false)"><span class="u6-opt-letter">A</span>Primero describir todos los errores y luego decir algo positivo</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q7',true)"><span class="u6-opt-letter">B</span>Empezar por algo positivo, luego describir el error con precisión y dar instrucción de mejora</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q7',false)"><span class="u6-opt-letter">C</span>Esperar al final de todas las clases para dar retroalimentación</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q7',false)"><span class="u6-opt-letter">D</span>Decirle al alumno que es "descuidado" para que tome conciencia</div>
+    <div class="u6-fb" id="u6fb-u6q7"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q8">
+    <p>8. ¿Cuál es la diferencia principal entre mentalidad fija y mentalidad de crecimiento?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q8',false)"><span class="u6-opt-letter">A</span>La mentalidad fija es más inteligente que la de crecimiento</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q8',false)"><span class="u6-opt-letter">B</span>La mentalidad de crecimiento solo aplica a personas jóvenes</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q8',true)"><span class="u6-opt-letter">C</span>La mentalidad de crecimiento ve los errores como oportunidades de aprender; la fija los ve como fracasos</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q8',false)"><span class="u6-opt-letter">D</span>No hay diferencia real entre ambas en el trabajo diario</div>
+    <div class="u6-fb" id="u6fb-u6q8"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q9">
+    <p>9. Si tienes un conflicto con un compañero de trabajo, ¿cuál es la acción más inteligente emocionalmente?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q9',false)"><span class="u6-opt-letter">A</span>Comentar la situación con los otros compañeros para buscar apoyo</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q9',false)"><span class="u6-opt-letter">B</span>Ignorar el problema esperando que se solucione solo</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q9',true)"><span class="u6-opt-letter">C</span>Hablar directamente con esa persona en el momento y lugar adecuados</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q9',false)"><span class="u6-opt-letter">D</span>Reportar de inmediato a la dirección sin hablar antes con el colega</div>
+    <div class="u6-fb" id="u6fb-u6q9"></div>
+  </div>
+
+  <div class="u6-quiz-q" id="u6q10">
+    <p>10. ¿Por qué la inteligencia emocional se puede aprender y desarrollar?</p>
+    <div class="u6-opt" onclick="u6ans(this,'u6q10',false)"><span class="u6-opt-letter">A</span>Porque depende únicamente de la genética de cada persona</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q10',false)"><span class="u6-opt-letter">B</span>Porque solo las personas muy inteligentes pueden desarrollarla</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q10',false)"><span class="u6-opt-letter">C</span>Porque se aprende solo en la niñez y ya no cambia en adultos</div>
+    <div class="u6-opt" onclick="u6ans(this,'u6q10',true)"><span class="u6-opt-letter">D</span>Porque es una habilidad que se entrena con práctica consciente a cualquier edad</div>
+    <div class="u6-fb" id="u6fb-u6q10"></div>
+  </div>
+
+  <button class="u6-quiz-btn" onclick="u6submit()">📊 Ver Resultados</button>
+
+  <div class="u6-score" id="u6score">
+    <div class="u6-score-num" id="u6scorenum">—</div>
+    <p id="u6scoremsg"></p>
+    <p style="margin-top:14px;font-size:11px;opacity:.7;">Puntaje mínimo de aprobación: 7/10</p>
+  </div>
+
+  <div class="u6-footer-nav">
+    <button class="u6-btn-nav" onclick="u6show(6)">← Anterior</button>
+    <button class="u6-btn-nav pri" onclick="u6show(0)">🔄 Reiniciar Unidad</button>
+  </div>
+</div>
+
+</div><!-- /u6-wrap -->
+
+<script>
+var u6cur=0,u6map={};
+function u6show(i){
+  var s=document.querySelectorAll('.u6-section');
+  var t=document.querySelectorAll('.u6-tab');
+  for(var j=0;j<s.length;j++){s[j].classList.remove('active');t[j].classList.remove('active');}
+  s[i].classList.add('active');t[i].classList.add('active');
+  u6cur=i;
+  document.getElementById('u6pf').style.width=Math.round(((i+1)/8)*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function u6acc(h){h.parentElement.classList.toggle('open');}
+function u6ans(el,qid,correct){
+  if(u6map[qid]!==undefined)return;
+  u6map[qid]=correct;
+  var opts=el.parentElement.querySelectorAll('.u6-opt');
+  for(var i=0;i<opts.length;i++){opts[i].style.pointerEvents='none';}
+  el.classList.add(correct?'ok':'no');
+  var fb=document.getElementById('u6fb-'+qid);
+  fb.classList.add('show');
+  fb.style.color=correct?'#1A5C3A':'#8C1A1A';
+  fb.textContent=correct?'✅ ¡Correcto!':'❌ Incorrecto. Revisa el contenido de esta sección.';
+}
+function u6submit(){
+  var score=0;
+  var vals=Object.values(u6map);
+  for(var i=0;i<vals.length;i++){if(vals[i])score++;}
+  var el=document.getElementById('u6score');
+  el.style.display='block';
+  document.getElementById('u6scorenum').textContent=score+'/10';
+  var msg='';
+  if(score>=9)msg='🏆 Excelente. Tienes una gran inteligencia emocional como instructor.';
+  else if(score>=7)msg='✅ Aprobado. Buen manejo de los conceptos de inteligencia emocional.';
+  else if(score>=5)msg='⚠️ En proceso. Repasa las secciones donde tuviste dificultad.';
+  else msg='❌ No aprobado. Te recomendamos revisar toda la unidad con calma e intentarlo de nuevo.';
+  document.getElementById('u6scoremsg').textContent=msg;
+}
+</script>
